@@ -26,7 +26,9 @@ export function ChangePasswordForm() {
         router.push("/dashboard");
       }, 2000);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to change password");
+      setError(
+        err instanceof Error ? err.message : "Failed to change password",
+      );
     } finally {
       setIsSubmitting(false);
     }

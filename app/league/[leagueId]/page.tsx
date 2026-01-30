@@ -2,7 +2,7 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import Navigation from "@/app/components/Navigation";
 import { GameForm } from "./GameForm";
-import { TeamBadge } from "@/app/components/TeamBadge";
+import { GamesList } from "./GamesList";
 import { notFound } from "next/navigation";
 
 export default async function AddGamePage({
@@ -25,6 +25,9 @@ export default async function AddGamePage({
       champion: true,
       games: {
         orderBy: { playedAt: "desc" },
+        include: {
+          playerStats: true,
+        },
       },
     },
   });
@@ -69,40 +72,16 @@ export default async function AddGamePage({
 
         {!isFinished && <GameForm league={league} />}
 
-        {isFinished && league.games.length > 0 && (
-          <div className="bg-white shadow rounded-lg p-6">
-            <h2 className="text-xl font-semibold mb-4">All Games</h2>
-            <div className="space-y-3">
-              {league.games.map((game) => (
-                <div
-                  key={game.id}
-                  className="flex justify-between items-center p-3 bg-gray-50 rounded"
-                >
-                  <div className="flex-1 space-y-2">
-                    <div className="flex items-center gap-2">
-                      <TeamBadge teamName={game.homeTeam} size="sm" />
-                      <span className="text-sm text-gray-600">{game.homeTeam}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <TeamBadge teamName={game.awayTeam} size="sm" />
-                      <span className="text-sm text-gray-600">{game.awayTeam}</span>
-                    </div>
-                  </div>
-                  <div className="text-center font-bold">
-                    <div>
-                      {game.homeScore} - {game.awayScore}
-                    </div>
-                    <div className="text-xs text-gray-500">
-                      xG: {game.homeXG.toFixed(1)} - {game.awayXG.toFixed(1)}
-                    </div>
-                  </div>
-                  <div className="flex-1 text-right text-sm text-gray-600">
-                    {new Date(game.playedAt).toLocaleDateString()}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+        {league.games.length > 0 && (
+          <GamesList
+            league={{
+              id: league.id,
+              name: league.name,
+              playerA: league.playerA,
+              playerB: league.playerB,
+            }}
+            games={league.games}
+          />
         )}
       </main>
     </div>

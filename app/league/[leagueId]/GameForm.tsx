@@ -74,8 +74,15 @@ export function GameForm({ league }: GameFormProps) {
     try {
       const homeScore = parseInt(String(formData.homeScore)) || 0;
       const awayScore = parseInt(String(formData.awayScore)) || 0;
-      const homeXG = parseFloat(String(formData.homeXG)) || 0;
-      const awayXG = parseFloat(String(formData.awayXG)) || 0;
+      // Default xG to score if not provided
+      const homeXG =
+        formData.homeXG !== ""
+          ? parseFloat(String(formData.homeXG))
+          : homeScore;
+      const awayXG =
+        formData.awayXG !== ""
+          ? parseFloat(String(formData.awayXG))
+          : awayScore;
 
       await createGame({
         leagueId: league.id,
@@ -165,9 +172,15 @@ export function GameForm({ league }: GameFormProps) {
               type="number"
               min="0"
               value={formData.homeScore}
-              onChange={(e) =>
-                setFormData({ ...formData, homeScore: e.target.value })
-              }
+              onChange={(e) => {
+                const score = e.target.value;
+                setFormData((prev) => ({
+                  ...prev,
+                  homeScore: score,
+                  // Default xG to score if xG is empty
+                  homeXG: prev.homeXG === "" ? score : prev.homeXG,
+                }));
+              }}
               className="w-full px-3 py-2 border border-gray-300 rounded-md"
               required
             />
@@ -180,9 +193,15 @@ export function GameForm({ league }: GameFormProps) {
               type="number"
               min="0"
               value={formData.awayScore}
-              onChange={(e) =>
-                setFormData({ ...formData, awayScore: e.target.value })
-              }
+              onChange={(e) => {
+                const score = e.target.value;
+                setFormData((prev) => ({
+                  ...prev,
+                  awayScore: score,
+                  // Default xG to score if xG is empty
+                  awayXG: prev.awayXG === "" ? score : prev.awayXG,
+                }));
+              }}
               className="w-full px-3 py-2 border border-gray-300 rounded-md"
               required
             />
@@ -193,6 +212,9 @@ export function GameForm({ league }: GameFormProps) {
       {/* XG */}
       <div className="bg-white shadow rounded-lg p-6">
         <h2 className="text-lg font-semibold mb-4">Expected Goals (xG)</h2>
+        <p className="text-sm text-gray-600 mb-4">
+          Optional - defaults to actual goals if not entered
+        </p>
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -207,7 +229,6 @@ export function GameForm({ league }: GameFormProps) {
                 setFormData({ ...formData, homeXG: e.target.value })
               }
               className="w-full px-3 py-2 border border-gray-300 rounded-md"
-              required
             />
           </div>
           <div>
@@ -223,7 +244,6 @@ export function GameForm({ league }: GameFormProps) {
                 setFormData({ ...formData, awayXG: e.target.value })
               }
               className="w-full px-3 py-2 border border-gray-300 rounded-md"
-              required
             />
           </div>
         </div>
