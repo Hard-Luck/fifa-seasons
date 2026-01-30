@@ -1,0 +1,228 @@
+{
+  "leagues": {
+    "EPL": {
+      "Arsenal": {
+        "rating": 5.0,
+        "score": 85,
+        "badge": "https://cdn.sofifa.net/meta/team/19/60.png"
+      },
+      "Liverpool": {
+        "rating": 5.0,
+        "score": 85,
+        "badge": "https://cdn.sofifa.net/meta/team/8/60.png"
+      },
+      "Manchester City": {
+        "rating": 5.0,
+        "score": 84,
+        "badge": "https://cdn.sofifa.net/meta/team/9/60.png"
+      },
+      "Tottenham Hotspur": {
+        "rating": 4.5,
+        "score": 81,
+        "badge": "https://cdn.sofifa.net/meta/team/6/60.png"
+      },
+      "Newcastle United": {
+        "rating": 4.5,
+        "score": 81,
+        "badge": "https://cdn.sofifa.net/meta/team/20/60.png"
+      },
+      "Aston Villa": {
+        "rating": 4.5,
+        "score": 81,
+        "badge": "https://cdn.sofifa.net/meta/team/15/60.png"
+      },
+      "Chelsea": {
+        "rating": 4.5,
+        "score": 81,
+        "badge": "https://cdn.sofifa.net/meta/team/18/60.png"
+      },
+      "Manchester United": {
+        "rating": 4.5,
+        "score": 80,
+        "badge": "https://cdn.sofifa.net/meta/team/14/60.png"
+      },
+      "Crystal Palace": {
+        "rating": 4.5,
+        "score": 79,
+        "badge": "https://cdn.sofifa.net/meta/team/51/60.png"
+      },
+      "Nottingham Forest": {
+        "rating": 4.5,
+        "score": 79,
+        "badge": "https://cdn.sofifa.net/meta/team/63/60.png"
+      },
+      "Brighton & Hove Albion": {
+        "rating": 4.0,
+        "score": 78,
+        "badge": "https://cdn.sofifa.net/meta/team/78/60.png"
+      },
+      "Fulham FC": {
+        "rating": 4.0,
+        "score": 78,
+        "badge": "https://cdn.sofifa.net/meta/team/11/60.png"
+      },
+      "Everton": {
+        "rating": 4.0,
+        "score": 78,
+        "badge": "https://cdn.sofifa.net/meta/team/13/60.png"
+      },
+      "Brentford": {
+        "rating": 4.0,
+        "score": 77,
+        "badge": "https://cdn.sofifa.net/meta/team/236/60.png"
+      },
+      "AFC Bournemouth": {
+        "rating": 4.0,
+        "score": 77,
+        "badge": "https://cdn.sofifa.net/meta/team/52/60.png"
+      },
+      "Sunderland": {
+        "rating": 4.0,
+        "score": 77,
+        "badge": "https://cdn.sofifa.net/meta/team/3/60.png"
+      },
+      "West Ham United": {
+        "rating": 4.0,
+        "score": 77,
+        "badge": "https://cdn.sofifa.net/meta/team/1/60.png"
+      },
+      "Wolverhampton Wanderers": {
+        "rating": 4.0,
+        "score": 76,
+        "badge": "https://cdn.sofifa.net/meta/team/29/60.png"
+      },
+      "Leeds United": {
+        "rating": 4.0,
+        "score": 76,
+        "badge": "https://cdn.sofifa.net/meta/team/71/60.png"
+      },
+      "Burnley": {
+        "rating": 4.0,
+        "score": 75,
+        "badge": "https://cdn.sofifa.net/meta/team/27/60.png"
+      }
+    },
+    "championship": {
+      "Ipswich Town": {
+        "rating": 3.5,
+        "score": 73,
+        "badge": "https://cdn.sofifa.net/meta/team/116/60.png"
+      },
+      "Coventry City": {
+        "rating": 3.5,
+        "score": 72,
+        "badge": "https://cdn.sofifa.net/meta/team/117/60.png"
+      },
+      "Leicester City": {
+        "rating": 3.5,
+        "score": 72,
+        "badge": "https://cdn.sofifa.net/meta/team/42/60.png"
+      },
+      "Sheffield United": {
+        "rating": 3.5,
+        "score": 72,
+        "badge": "https://cdn.sofifa.net/meta/team/21/60.png"
+      },
+      "Birmingham City": {
+        "rating": 3.5,
+        "score": 72,
+        "badge": "https://cdn.sofifa.net/meta/team/12/60.png"
+      },
+      "Southampton": {
+        "rating": 3.5,
+        "score": 72,
+        "badge": "https://cdn.sofifa.net/meta/team/65/60.png"
+      },
+      "Wrexham": {
+        "rating": 3.0,
+        "score": 71,
+        "badge": "https://cdn.sofifa.net/meta/team/283/60.png"
+      },
+      "Bristol City": {
+        "rating": 3.0,
+        "score": 71,
+        "badge": "https://cdn.sofifa.net/meta/team/122/60.png"
+      },
+      "Hull City": {
+        "rating": 3.0,
+        "score": 71,
+        "badge": "https://cdn.sofifa.net/meta/team/22/60.png"
+      },
+      "Middlesbrough": {
+        "rating": 3.0,
+        "score": 71,
+        "badge": "https://cdn.sofifa.net/meta/team/7/60.png"
+      },
+      "Stoke City": {
+        "rating": 3.0,
+        "score": 70,
+        "badge": "https://cdn.sofifa.net/meta/team/26/60.png"
+      },
+      "Preston North End": {
+        "rating": 3.0,
+        "score": 70,
+        "badge": "https://cdn.sofifa.net/meta/team/99/60.png"
+      },
+      "Watford": {
+        "rating": 3.0,
+        "score": 70,
+        "badge": "https://cdn.sofifa.net/meta/team/25/60.png"
+      },
+      "Swansea City": {
+        "rating": 3.0,
+        "score": 70,
+        "badge": "https://cdn.sofifa.net/meta/team/30/60.png"
+      },
+      "Norwich City": {
+        "rating": 3.0,
+        "score": 70,
+        "badge": "https://cdn.sofifa.net/meta/team/33/60.png"
+      },
+      "Queens Park Rangers": {
+        "rating": 3.0,
+        "score": 70,
+        "badge": "https://cdn.sofifa.net/meta/team/47/60.png"
+      },
+      "West Bromwich Albion": {
+        "rating": 3.0,
+        "score": 70,
+        "badge": "https://cdn.sofifa.net/meta/team/10/60.png"
+      },
+      "Millwall FC": {
+        "rating": 3.0,
+        "score": 70,
+        "badge": "https://cdn.sofifa.net/meta/team/64/60.png"
+      },
+      "Oxford United": {
+        "rating": 3.0,
+        "score": 69,
+        "badge": "https://cdn.sofifa.net/meta/team/297/60.png"
+      },
+      "Charlton Athletic": {
+        "rating": 3.0,
+        "score": 69,
+        "badge": "https://cdn.sofifa.net/meta/team/4/60.png"
+      },
+      "Derby County": {
+        "rating": 3.0,
+        "score": 69,
+        "badge": "https://cdn.sofifa.net/meta/team/24/60.png"
+      },
+      "Portsmouth": {
+        "rating": 3.0,
+        "score": 69,
+        "badge": "https://cdn.sofifa.net/meta/team/5/60.png"
+      },
+      "Blackburn Rovers": {
+        "rating": 3.0,
+        "score": 69,
+        "badge": "https://cdn.sofifa.net/meta/team/2/60.png"
+      },
+      "Sheffield Wednesday": {
+        "rating": 2.5,
+        "score": 68,
+        "badge": "https://cdn.sofifa.net/meta/team/56/60.png"
+      }
+    }
+  }
+}

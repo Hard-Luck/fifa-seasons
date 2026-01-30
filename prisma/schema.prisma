@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id           String   @id @default(cuid())
+  name         String   @unique
+  password     String
+  prizeMoney   Int      @default(0)
+  createdAt    DateTime @default(now())
+
+  leaguesAsPlayerA  League[] @relation("PlayerA")
+  leaguesAsPlayerB  League[] @relation("PlayerB")
+  championLeagues   League[] @relation("Champion")
+  homeGames         Game[]   @relation("HomeUser")
+  awayGames         Game[]   @relation("AwayUser")
+  playerStats       GamePlayerStats[]
+}
+
+model League {
+  id              String   @id @default(cuid())
+  name            String
+  footballLeague  String   @default("EPL")
+  totalGames      Int      @default(10)
+  status          String   @default("active") // active | finished
+  championId      String?
+  playerAId       String
+  playerBId       String
+  createdAt       DateTime @default(now())
+
+  champion User?  @relation("Champion", fields: [championId], references: [id])
+  playerA  User   @relation("PlayerA", fields: [playerAId], references: [id])
+  playerB  User   @relation("PlayerB", fields: [playerBId], references: [id])
+  games    Game[]
+}
+
+model Game {
+  id         String   @id @default(cuid())
+  leagueId   String
+  playedAt   DateTime @default(now())
+  homeUserId String
+  awayUserId String
+  homeTeam   String
+  awayTeam   String
+  homeScore  Int
+  awayScore  Int
+  homeXG     Float
+  awayXG     Float
+
+  league      League            @relation(fields: [leagueId], references: [id])
+  homeUser    User              @relation("HomeUser", fields: [homeUserId], references: [id])
+  awayUser    User              @relation("AwayUser", fields: [awayUserId], references: [id])
+  playerStats GamePlayerStats[]
+}
+
+model GamePlayerStats {
+  id               String  @id @default(cuid())
+  gameId           String
+  userId           String
+  goals            Int     @default(0)
+  hatTricks        Int     @default(0)
+  outsideBoxGoals  Int     @default(0)
+  headerGoals      Int     @default(0)
+  penaltiesMissed  Int     @default(0)
+  redCards         Int     @default(0)
+  xg               Float
+  isHome           Boolean
+
+  game Game @relation(fields: [gameId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+}
