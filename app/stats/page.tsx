@@ -2,7 +2,7 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import Navigation from "../components/Navigation";
 import { calculateLeagueStandings } from "@/lib/standings";
-import type { Game, GamePlayerStats } from "@prisma/client";
+import type { Game, GamePlayerStats } from "@/generated/prisma/client";
 import { TeamBadge } from "../components/TeamBadge";
 
 type GameWithStats = Game & {
