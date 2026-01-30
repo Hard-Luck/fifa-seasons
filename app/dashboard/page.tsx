@@ -5,7 +5,7 @@ import Link from "next/link";
 import { CreateLeagueForm } from "../components/CreateLeagueForm";
 import { getUsers } from "../actions/leagues";
 import { calculateLeagueStandings } from "@/lib/standings";
-import type { Game } from "@prisma/client";
+import type { Game } from "@/generated/prisma/client";
 import { TeamBadge } from "../components/TeamBadge";
 
 export default async function DashboardPage() {
