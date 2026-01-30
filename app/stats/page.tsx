@@ -127,7 +127,7 @@ export default async function StatsPage() {
   const leagueStats = standings.find((s) => s.userId === session.user!.id);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 pb-20">
       <Navigation />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -141,9 +141,24 @@ export default async function StatsPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div>
               <div className="text-2xl font-bold text-blue-600">
-                £{user?.prizeMoney || 0}
+                {(() => {
+                  if (!activeLeague) return `£${user?.prizeMoney || 0}`;
+
+                  const playerA = activeLeague.playerA;
+                  const playerB = activeLeague.playerB;
+
+                  if (playerA.prizeMoney === playerB.prizeMoney) {
+                    return `£${Math.abs(playerA.prizeMoney)} Tied`;
+                  }
+
+                  const leader =
+                    playerA.prizeMoney > playerB.prizeMoney ? playerA : playerB;
+                  const amount = Math.abs(leader.prizeMoney);
+
+                  return `£${amount} ${leader.name}`;
+                })()}
               </div>
-              <div className="text-sm text-gray-600">Total Prize Money</div>
+              <div className="text-sm text-gray-600">Prize Money Leader</div>
             </div>
             <div>
               <div className="text-2xl font-bold">{totalGames}</div>

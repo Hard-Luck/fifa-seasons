@@ -22,6 +22,12 @@ export default async function Navigation() {
             >
               Stats
             </Link>
+            <Link
+              href="/settings"
+              className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:text-gray-900"
+            >
+              Settings
+            </Link>
           </div>
           <div className="flex items-center space-x-4">
             <span className="text-sm text-gray-700">{session?.user?.name}</span>

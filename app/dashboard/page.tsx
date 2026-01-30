@@ -15,7 +15,7 @@ export default async function DashboardPage() {
     return null;
   }
 
-  const [user, activeLeague, users] = await Promise.all([
+  const [user, activeLeague, finishedLeagues, users] = await Promise.all([
     prisma.user.findUnique({
       where: { id: session.user.id },
     }),
@@ -30,6 +30,21 @@ export default async function DashboardPage() {
         games: {
           orderBy: { playedAt: "desc" },
         },
+      },
+    }),
+    prisma.league.findMany({
+      where: {
+        OR: [{ playerAId: session.user.id }, { playerBId: session.user.id }],
+        status: "finished",
+      },
+      include: {
+        playerA: true,
+        playerB: true,
+        champion: true,
+        games: true,
+      },
+      orderBy: {
+        createdAt: "desc",
       },
     }),
     getUsers(),
@@ -48,7 +63,7 @@ export default async function DashboardPage() {
   const last5Games = activeLeague?.games.slice(0, 5) || [];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 pb-20">
       <Navigation />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -60,7 +75,22 @@ export default async function DashboardPage() {
         <div className="bg-white shadow rounded-lg p-6 mb-6">
           <h2 className="text-xl font-semibold mb-4">Prize Money</h2>
           <div className="text-3xl font-bold text-blue-600">
-            £{user?.prizeMoney || 0}
+            {(() => {
+              if (!activeLeague) return `£${user?.prizeMoney || 0}`;
+
+              const playerA = activeLeague.playerA;
+              const playerB = activeLeague.playerB;
+
+              if (playerA.prizeMoney === playerB.prizeMoney) {
+                return `£${Math.abs(playerA.prizeMoney)} Tied`;
+              }
+
+              const leader =
+                playerA.prizeMoney > playerB.prizeMoney ? playerA : playerB;
+              const amount = Math.abs(leader.prizeMoney);
+
+              return `£${amount} ${leader.name}`;
+            })()}
           </div>
         </div>
 
@@ -201,6 +231,56 @@ export default async function DashboardPage() {
               Create a new league to get started
             </p>
             <CreateLeagueForm currentUserId={session.user.id!} users={users} />
+          </div>
+        )}
+
+        {/* Historical Leagues */}
+        {finishedLeagues.length > 0 && (
+          <div className="mt-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              Historical Leagues
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {finishedLeagues.map((league) => {
+                const totalGamesPlayed = league.games.length;
+                const isChampion = league.championId === session.user?.id;
+
+                return (
+                  <Link
+                    key={league.id}
+                    href={`/league/${league.id}`}
+                    className="bg-white shadow rounded-lg p-6 hover:shadow-lg transition-shadow"
+                  >
+                    <div className="flex justify-between items-start mb-3">
+                      <h3 className="text-lg font-semibold">{league.name}</h3>
+                      {isChampion && (
+                        <span className="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs font-bold rounded">
+                          🏆 Champion
+                        </span>
+                      )}
+                    </div>
+                    <div className="space-y-2 text-sm text-gray-600">
+                      <div className="flex justify-between">
+                        <span>Games Played:</span>
+                        <span className="font-medium">{totalGamesPlayed}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Champion:</span>
+                        <span className="font-medium">
+                          {league.champion?.name || "Tied"}
+                        </span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Completed:</span>
+                        <span className="font-medium">
+                          {new Date(league.createdAt).toLocaleDateString()}
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         )}
       </main>

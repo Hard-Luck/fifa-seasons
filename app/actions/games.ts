@@ -98,6 +98,85 @@ export async function createGame(data: CreateGameData) {
             data: { prizeMoney: { increment: awayPrizeMoney } }
         })
 
+        // Check if league should end early (mathematically decided)
+        const allGames = await tx.game.findMany({
+            where: { leagueId: data.leagueId },
+        })
+
+        const gamesPlayed = allGames.length
+        const remainingGames = league.totalGames - gamesPlayed
+
+        if (remainingGames > 0) {
+            // Calculate current standings
+            const standings: Record<string, number> = {
+                [data.homeUserId]: 0,
+                [data.awayUserId]: 0,
+            }
+
+            for (const game of allGames) {
+                if (game.homeScore > game.awayScore) {
+                    standings[game.homeUserId] = (standings[game.homeUserId] || 0) + 3
+                } else if (game.awayScore > game.homeScore) {
+                    standings[game.awayUserId] = (standings[game.awayUserId] || 0) + 3
+                } else {
+                    standings[game.homeUserId] = (standings[game.homeUserId] || 0) + 1
+                    standings[game.awayUserId] = (standings[game.awayUserId] || 0) + 1
+                }
+            }
+
+            const homePoints = standings[data.homeUserId] || 0
+            const awayPoints = standings[data.awayUserId] || 0
+            const maxPossiblePoints = remainingGames * 3
+
+            // Determine if it's mathematically impossible for the trailing player to catch up
+            const leadingPoints = Math.max(homePoints, awayPoints)
+            const trailingPoints = Math.min(homePoints, awayPoints)
+
+            // Only end if trailer can't even tie: trailingPoints + maxPossible < leadingPoints
+            if (trailingPoints + maxPossiblePoints < leadingPoints) {
+                const championId = homePoints > awayPoints ? data.homeUserId : data.awayUserId
+                await tx.league.update({
+                    where: { id: data.leagueId },
+                    data: {
+                        status: "finished",
+                        championId,
+                    }
+                })
+            }
+        }
+
+        // Check if all games are played
+        if (gamesPlayed >= league.totalGames) {
+            // Calculate final standings to determine champion
+            const standings: Record<string, number> = {
+                [data.homeUserId]: 0,
+                [data.awayUserId]: 0,
+            }
+
+            for (const game of allGames) {
+                if (game.homeScore > game.awayScore) {
+                    standings[game.homeUserId] = (standings[game.homeUserId] || 0) + 3
+                } else if (game.awayScore > game.homeScore) {
+                    standings[game.awayUserId] = (standings[game.awayUserId] || 0) + 3
+                } else {
+                    standings[game.homeUserId] = (standings[game.homeUserId] || 0) + 1
+                    standings[game.awayUserId] = (standings[game.awayUserId] || 0) + 1
+                }
+            }
+
+            const homePoints = standings[data.homeUserId] || 0
+            const awayPoints = standings[data.awayUserId] || 0
+            const championId = homePoints > awayPoints ? data.homeUserId : awayPoints > homePoints ? data.awayUserId : null
+
+            await tx.league.update({
+                where: { id: data.leagueId },
+                data: {
+                    status: "finished",
+                    championId,
+                }
+            })
+        }
+
         return newGame
     })
 
