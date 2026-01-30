@@ -223,6 +223,108 @@
         "score": 68,
         "badge": "https://cdn.sofifa.net/meta/team/56/60.png"
       }
+    },
+    "serieA": {
+      "Inter": {
+        "rating": 5.0,
+        "score": 84,
+        "badge": "https://cdn.sofifa.net/meta/team/2930/60.png"
+      },
+      "Napoli": {
+        "rating": 4.5,
+        "score": 81,
+        "badge": "https://cdn.sofifa.net/meta/team/597/60.png"
+      },
+      "AC Milan": {
+        "rating": 4.5,
+        "score": 81,
+        "badge": "https://cdn.sofifa.net/meta/team/113/60.png"
+      },
+      "Juventus": {
+        "rating": 4.5,
+        "score": 80,
+        "badge": "https://cdn.sofifa.net/meta/team/625/60.png"
+      },
+      "Roma": {
+        "rating": 4.5,
+        "score": 80,
+        "badge": "https://cdn.sofifa.net/meta/team/37/60.png"
+      },
+      "Atalanta": {
+        "rating": 4.5,
+        "score": 79,
+        "badge": "https://cdn.sofifa.net/meta/team/708/60.png"
+      },
+      "Lazio": {
+        "rating": 4.0,
+        "score": 78,
+        "badge": "https://cdn.sofifa.net/meta/team/43/60.png"
+      },
+      "Fiorentina": {
+        "rating": 4.0,
+        "score": 76,
+        "badge": "https://cdn.sofifa.net/meta/team/109/60.png"
+      },
+      "Como": {
+        "rating": 4.0,
+        "score": 76,
+        "badge": "https://cdn.sofifa.net/meta/team/268/60.png"
+      },
+      "Bologna": {
+        "rating": 4.0,
+        "score": 76,
+        "badge": "https://cdn.sofifa.net/meta/team/8513/60.png"
+      },
+      "Torino": {
+        "rating": 4.0,
+        "score": 76,
+        "badge": "https://cdn.sofifa.net/meta/team/613/60.png"
+      },
+      "Sassuolo": {
+        "rating": 3.5,
+        "score": 74,
+        "badge": "https://cdn.sofifa.net/meta/team/2714/60.png"
+      },
+      "Cremonese": {
+        "rating": 3.5,
+        "score": 73,
+        "badge": "https://cdn.sofifa.net/meta/team/10722/60.png"
+      },
+      "Genoa": {
+        "rating": 3.5,
+        "score": 73,
+        "badge": "https://cdn.sofifa.net/meta/team/102/60.png"
+      },
+      "Parma": {
+        "rating": 3.5,
+        "score": 73,
+        "badge": "https://cdn.sofifa.net/meta/team/398/60.png"
+      },
+      "Cagliari": {
+        "rating": 3.5,
+        "score": 73,
+        "badge": "https://cdn.sofifa.net/meta/team/585/60.png"
+      },
+      "Hellas Verona": {
+        "rating": 3.5,
+        "score": 73,
+        "badge": "https://cdn.sofifa.net/meta/team/1123/60.png"
+      },
+      "Udinese": {
+        "rating": 3.5,
+        "score": 73,
+        "badge": "https://cdn.sofifa.net/meta/team/346/60.png"
+      },
+      "Lecce": {
+        "rating": 3.5,
+        "score": 72,
+        "badge": "https://cdn.sofifa.net/meta/team/7790/60.png"
+      },
+      "Pisa": {
+        "rating": 3.5,
+        "score": 72,
+        "badge": "https://cdn.sofifa.net/meta/team/1072/60.png"
+      }
     }
   }
 }
